@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signalement d'Incident - EIGSI Casablanca</title>
+    <style>
+        /* Charte graphique EIGSI */
+        :root {
+            --eigsi-blue: #0066CC;
+            --eigsi-gray: #F5F5F5;
+            --eigsi-white: #FFFFFF;
+            --eigsi-dark: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--eigsi-gray);
+            color: var(--eigsi-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: var(--eigsi-white);
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid var(--eigsi-blue);
+        }
+
+        .logo {
+            max-height: 80px;
+            margin-right: 20px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--eigsi-blue);
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: var(--eigsi-white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 700px;
+            margin: 20px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--eigsi-dark);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .required {
+            color: red;
+        }
+
+        button {
+            background-color: var(--eigsi-blue);
+            color: var(--eigsi-white);
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0052A3;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--eigsi-dark);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://i.ibb.co/YFP0MRgr/logo-eigsi1.jpg" alt="Logo EIGSI Casablanca" class="logo">
+        <div class="title">Signalement d'Incident Technique - EIGSI Casablanca</div>
+    </div>
+
+    <div class="form-container">
+<form action="https://script.google.com/a/macros/eigsica.ma/s/AKfycbwkqhUtE68vHsxVXbR-vQ9xd14h4o82ORMo7IoEG7PX9qjK3CaGeeAB5w3kAzPhv47b4w/exec" method="POST">
+  <input type="text" name="nom" required placeholder="Nom et Prénom">
+  <input type="email" name="email" required placeholder="Email">
+  <select name="salle" required>
+    <option value="Labo Fablab">Labo Fablab</option>
+    <option value="Labo Fluide">Labo Fluide</option>
+    <option value="Labo Physique">Labo Physique</option>
+    <option value="Labo Elec">Labo Automatique</option>
+    <option value="Labo Electronique">Labo Electronique</option>
+    <option value="Labo Génie Électrique">Labo Génie Électrique</option>
+    <option value="Labo Info">Labo Info</option>
+  </select>
+  <select name="equipement" required>
+    <option value="Équipements Électriques">Équipements Électriques</option>
+    <option value="Équipements Mécaniques">Équipements Mécaniques</option>
+    <option value="Équipements Automatiques">Équipements Automatiques</option>
+    <option value="Équipements Fluides">Équipements Fluides</option>
+    <option value="Équipements Informatique">Équipements Informatique</option>
+  </select>
+  <select name="type" required>
+    <option value="Panne Matérielle">Panne Matérielle</option>
+    <option value="Problème Logiciel">Problème Logiciel</option>
+    <option value="Problème de Connexion">Problème de Connexion</option>
+    <option value="Maintenance Préventive">Maintenance Préventive</option>
+  </select>
+  <textarea name="description" required placeholder="Description de l'incident"></textarea>
+  <select name="urgence" required>
+    <option value="Basse">Basse</option>
+    <option value="Moyenne">Moyenne</option>
+    <option value="Haute">Haute</option>
+    <option value="Critique">Critique</option>
+  </select>
+  <button type="submit">Envoyer</button>
+</form>
+    </div>
+
+    <div class="footer">
+        © 2026 EIGSI Casablanca - Service Technique
+    </div>
+</body>
+</html>
