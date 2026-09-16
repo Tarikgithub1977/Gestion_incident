@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signalement d'Incident - EIGSI Casablanca</title>
     <style>
-        /* Charte graphique EIGSI */
         :root {
             --eigsi-blue: #0066CC;
             --eigsi-gray: #F5F5F5;
@@ -121,41 +120,104 @@
     </div>
 
     <div class="form-container">
-<form action="https://formsubmit.co/tarik.bouragba@eigsi.org" method="POST">
-  <input type="text" name="nom" required placeholder="Nom et Prénom">
-  <input type="email" name="email" required placeholder="Email">
-  <select name="salle" required>
-    <option value="Labo Fablab">Labo Fablab</option>
-    <option value="Labo Fluide">Labo Fluide</option>
-    <option value="Labo Physique">Labo Physique</option>
-    <option value="Labo Elec">Labo Automatique</option>
-    <option value="Labo Electronique">Labo Electronique</option>
-    <option value="Labo Génie Électrique">Labo Génie Électrique</option>
-    <option value="Labo Info">Labo Info</option>
-  </select>
-  <select name="equipement" required>
-    <option value="Équipements Électriques">Équipements Électriques</option>
-    <option value="Équipements Mécaniques">Équipements Mécaniques</option>
-    <option value="Équipements Automatiques">Équipements Automatiques</option>
-    <option value="Équipements Fluides">Équipements Fluides</option>
-    <option value="Équipements Informatique">Équipements Informatique</option>
-  </select>
-  <select name="type" required>
-    <option value="Panne Matérielle">Panne Matérielle</option>
-    <option value="Problème Logiciel">Problème Logiciel</option>
-    <option value="Problème de Connexion">Problème de Connexion</option>
-    <option value="Maintenance Préventive">Maintenance Préventive</option>
-  </select>
-  <textarea name="description" required placeholder="Description de l'incident"></textarea>
-  <select name="urgence" required>
-    <option value="Basse">Basse</option>
-    <option value="Moyenne">Moyenne</option>
-    <option value="Haute">Haute</option>
-    <option value="Critique">Critique</option>
-  </select>
-  <button type="submit">Envoyer</button>
-</form>
+        <!--
+          Formulaire configuré pour :
+          1. Envoyer un e-mail via FormSubmit
+          2. Stocker les données dans Google Sheets via Google Forms
+        -->
+        <form
+            action="https://formsubmit.co/tarik.bouragba@eigsi.org"
+            method="POST"
+            onsubmit="submitToGoogleForms(event)"
+        >
+            <!-- Champs cachés pour FormSubmit -->
+            <input type="hidden" name="_subject" value="Nouveau signalement d'incident - EIGSI Casablanca">
+            <input type="hidden" name="_next" value="https://eigsi.org/merci">
+            <input type="hidden" name="_captcha" value="false">
+
+            <!-- Champs du formulaire -->
+            <input type="text" name="nom" id="nom" required placeholder="Nom et Prénom">
+            <input type="email" name="email" id="email" required placeholder="Email">
+            <select name="salle" id="salle" required>
+                <option value="Labo Fablab">Labo Fablab</option>
+                <option value="Labo Fluide">Labo Fluide</option>
+                <option value="Labo Physique">Labo Physique</option>
+                <option value="Labo Elec">Labo Automatique</option>
+                <option value="Labo Electronique">Labo Electronique</option>
+                <option value="Labo Génie Électrique">Labo Génie Électrique</option>
+                <option value="Labo Info">Labo Info</option>
+            </select>
+            <select name="equipement" id="equipement" required>
+                <option value="Équipements Électriques">Équipements Électriques</option>
+                <option value="Équipements Mécaniques">Équipements Mécaniques</option>
+                <option value="Équipements Automatiques">Équipements Automatiques</option>
+                <option value="Équipements Fluides">Équipements Fluides</option>
+                <option value="Équipements Informatique">Équipements Informatique</option>
+            </select>
+            <select name="type" id="type" required>
+                <option value="Panne Matérielle">Panne Matérielle</option>
+                <option value="Problème Logiciel">Problème Logiciel</option>
+                <option value="Problème de Connexion">Problème de Connexion</option>
+                <option value="Maintenance Préventive">Maintenance Préventive</option>
+            </select>
+            <textarea name="description" id="description" required placeholder="Description de l'incident"></textarea>
+            <select name="urgence" id="urgence" required>
+                <option value="Basse">Basse</option>
+                <option value="Moyenne">Moyenne</option>
+                <option value="Haute">Haute</option>
+                <option value="Critique">Critique</option>
+            </select>
+            <button type="submit">Envoyer</button>
+        </form>
     </div>
+
+    <!-- Script pour envoyer les données à Google Forms -->
+    <script>
+        function submitToGoogleForms(event) {
+            // Empêcher l'envoi classique du formulaire
+            event.preventDefault();
+
+            // Récupérer les données du formulaire
+            const formData = {
+                nom: document.getElementById("nom").value,
+                email: document.getElementById("email").value,
+                salle: document.getElementById("salle").value,
+                equipement: document.getElementById("equipement").value,
+                type: document.getElementById("type").value,
+                description: document.getElementById("description").value,
+                urgence: document.getElementById("urgence").value,
+            };
+
+            // URL de soumission du Google Formulaire (à remplacer par la vôtre)
+            const googleFormsUrl = "https://docs.google.com/forms/d/e/1FAIpQLScyX_wQbF-3_am-Spo7nOlZunQ31O039HmuGaeDZRrdFazAXw/formResponse?usp=dialog";
+
+            // Construire l'URL avec les données du formulaire
+            // Remplacez les IDs (entry.XXXXXX) par ceux de votre Google Formulaire
+            const urlWithData = new URL(googleFormsUrl);
+            urlWithData.searchParams.append("entry.1322401211", formData.nom); // ID du champ "Nom"
+            urlWithData.searchParams.append("entry.402573770", formData.email); // ID du champ "Email"
+            urlWithData.searchParams.append("entry.70509378", formData.salle); // ID du champ "Salle"
+            urlWithData.searchParams.append("entry.957020999", formData.equipement); // ID du champ "Équipement"
+            urlWithData.searchParams.append("entry.561991494", formData.type); // ID du champ "Type"
+            urlWithData.searchParams.append("entry.1072485226", formData.description); // ID du champ "Description"
+            urlWithData.searchParams.append("entry.1154933654", formData.urgence); // ID du champ "Urgence"
+
+            // Envoyer les données à Google Forms (méthode GET)
+            fetch(urlWithData.toString(), {
+                method: "GET",
+                mode: "no-cors", // Nécessaire pour éviter les erreurs CORS
+            })
+            .then(() => {
+                // Si Google Forms a bien reçu les données, soumettre le formulaire à FormSubmit
+                event.target.submit();
+            })
+            .catch((error) => {
+                console.error("Erreur lors de l'envoi à Google Forms :", error);
+                // Soumettre quand même à FormSubmit pour l'e-mail
+                event.target.submit();
+            });
+        }
+    </script>
 
     <div class="footer">
         © 2026 EIGSI Casablanca - Service Technique
